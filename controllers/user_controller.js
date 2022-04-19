@@ -1,11 +1,12 @@
+// need to add authauntication here
 const router = require('express').Router();
 const {User} = require('../models/index');
 
 router.get('/', async(req, res)=>{
     try{
         res.json(await User.find({}));
-    }catch(err){
-        res.status(400).json(err);
+    }catch(error){
+        res.status(400).json(error);
     }
 });
 router.post('/singup', async(req, res)=>{
@@ -45,8 +46,8 @@ router.post('/singup', async(req, res)=>{
         console.log("=====================")
         const userAdded = await newUser.save()
         return  res.send(userAdded)
-    }catch(err){
-        console.log(err.message)
+    }catch(error){
+        console.log(error.message)
         return res.status(400).send("Sign up error");
     }
 });
@@ -67,7 +68,7 @@ router.get('/login', async(req, res)=>{
         if (user && isMatch){
             return res.status(200).json("Logged in successfully")
         }
-    }catch(err){
+    }catch(error){
         console.log("=====================")
         console.log("=====================")
         console.log(er.message)
@@ -80,8 +81,8 @@ router.get('/logout', async(req, res)=> {
     try{
         await req.session.destroy();
         res.json("you logged out")
-    }catch(err){
-        res.status(404).json(err)
+    }catch(error){
+        res.status(404).json(error)
     }
 })
 router.put('/:id', async(req, res)=>{
@@ -89,22 +90,22 @@ router.put('/:id', async(req, res)=>{
         res.json(
             await User.findByIdAndUpdate(req.params.id, req.body,{new:true})
         )
-    }catch(err){
-        res.status(400).json(err)
+    }catch(error){
+        res.status(400).json(error)
     }
 })
 router.delete('/:id', async(req, res)=>{
     try{
         res.json(await User.findByIdAndRemove(rreq.params.id));
-    }catch(err){
-        res.status(400).json(err)
+    }catch(error){
+        res.status(400).json(error)
     }
 })
 router.get('/:id', async(req, res)=>{
     try{
         res.json(await User.findById({"_id": req.params.id}))
-    }catch(err){
-        RTCRtpSender.status(400).json(err)
+    }catch(error){
+        RTCRtpSender.status(400).json(error)
     }
 })
 

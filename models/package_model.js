@@ -4,7 +4,7 @@ const packageSchema = new mongoose.Schema(
     {
         title:{
             type: String,
-            required: [true, 'name can not be empty']
+            // required: [true, 'name can not be empty']
         },
         image:{
             type: String,
@@ -12,13 +12,13 @@ const packageSchema = new mongoose.Schema(
         },
         price: {
             type: Number,
-            min: [0, 'you can not add a negative number'],
+            min: [0, 'price can not be empty'],
             // required: [true, 'price can not be empty'],
         },
         weight:{
             type: Number,
             min: [0, 'you can not add a negative number'],
-            required: [true, 'price can not be empty'],
+            // required: [true, 'wieght can not be empty'],
         },
         trackingNumber:{
             type: String,

@@ -2,7 +2,9 @@ const express = require('express');
 const cors =require('cors');
 const morgan = require('morgan');
 
-// const controllers =require('./controllers');
+require('dotenv').config()
+
+const controllers =require('./controllers/index');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -10,8 +12,8 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-// app.use('/packages', controllers.package);
-// app.use('/user', controllers.user);
+app.use('/packages', controllers.package);
+app.use('/user', controllers.user);
 
 app.get('/', (req, res)=>{
     res.send("Hello world!");
