@@ -11,7 +11,7 @@ router.get('/', async(req, res)=>{
 });
 router.post('/singup', async(req, res)=>{
     try{
-        const {firstname, lastname, username, email, password} = req.body;
+        const {firstname, lastname, username, email, password, passwordConfirmation} = req.body;
         if(!(firstname ||lastname || username||email ||password)){
             res.status(400).send("Please fill out all fields")
         }
@@ -63,7 +63,9 @@ router.get('/login', async(req, res)=>{
         if(!( username|| email || password)){
             return res.status(400).json("Please fill out all fields");
         }
-        const user = await User.findOne({email: email, username: username});
+        const user = await User.findOne({email: email
+            // , username: username
+        });
         // const isMatch = await bcrypt.compare(password, user.password);
         if (user && isMatch){
             return res.status(200).json("Logged in successfully")
@@ -71,7 +73,7 @@ router.get('/login', async(req, res)=>{
     }catch(error){
         console.log("=====================")
         console.log("=====================")
-        console.log(er.message)
+        console.log(error.message)
         console.log("=====================")
         console.log("=====================")
         return res.status(404).json("Invalid Credentials")
