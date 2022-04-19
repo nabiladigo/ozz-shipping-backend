@@ -4,10 +4,39 @@ const morgan = require('morgan');
 
 require('dotenv').config()
 
+
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+
 const controllers =require('./controllers/index');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+/* SECTION App Config */
+
+app.use(
+    session({
+        // where to store the sessions in mongodb
+         store:MongoStore.create({ mongoUrl:"mongodb://localhost:27017/shipping"}),
+        //  secret key is used to sign every cookie to say its is valid
+        secret: "super secret",
+        resave: false,
+        saveUninitialized: false,
+        // configue the experation pof the cookie
+        copkie:{
+            maxAge: 1000 * 60 *60* 24 * 7 *2,
+            // two weeks
+        },
+    })
+);
+console.log("=====================")
+console.log("=====================")
+
+// figure out how to make the session work
+// console.log(req.session)
+console.log("=====================")
+console.log("=====================")
 
 app.use(cors());
 app.use(express.json());

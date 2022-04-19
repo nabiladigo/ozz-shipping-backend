@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nabiladigo/shipping-backend.git"
@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/nabiladigo/shipping-backend#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
     "mongoose": "^6.2.10",
     "morgan": "^1.10.0"
   },
